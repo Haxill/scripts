@@ -81,7 +81,7 @@ for entry in feed.entries:
         print(f"Lien: {Fore.MAGENTA}{link}{Style.RESET_ALL}\n")
         print("-" * 100)
 
-        # Lecture du titre et de la description 
+        # Lecture du titre et de la description
         engine.say(title)
         engine.runAndWait()
         engine.say(description)
