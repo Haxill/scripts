@@ -6,7 +6,7 @@ from langdetect.lang_detect_exception import LangDetectException
 from mtranslate import translate
 
 #######################################################################################################################################
-# Created by : SCH ROTH Wilfrid - CDAD-R - Section Ingénierie                                                                         #
+# Created by : HAXILL                                                                                                                 #
 # Date       : 11/04/2023                                                                                                             #
 # Langue     : Français                                                                                                               #
 # Script     : Il récupère le contenu d'un flux RSS (titre, description et lien), traduit le titre et la description des entrées      #
