@@ -41,7 +41,7 @@ url = "https://www.lemondeinformatique.fr/flux-rss/thematique/securite/rss.xml"
 
 # Demande de la langue dans laquelle on veut lire les résultats
 print(f"\n                              -- HAXILL RSS FEED TRANSLATOR --\n")
-langue = input(f"\n Entrez la langue dans laquelle vous voulez lire les résultats (fr, en, es, it, ru,...) : ")
+langue = input(f"\n Entrez la langue dans laquelle vous voulez lire les résultats (fr, en, es, it, de, ja, uk,...) : ")
 
 # Récupération du contenu du flux RSS
 feed = feedparser.parse(url)
