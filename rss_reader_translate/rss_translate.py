@@ -27,7 +27,7 @@ pygame.init()
 # URL du flux RSS à récupérer
   # RU :
 #url = "https://russiancouncil.ru/rss/analytics-and-comments/"
-  # US :
+  # EN :
 #url = "https://www.kitploit.com//feeds/posts/default"
 #url = "https://latesthackingnews.com/feed/"
 #url = "https://www.hackerone.com/blog.rss"
