@@ -12,7 +12,7 @@ from mtranslate import translate
 # Engine     : gTTS                                                                                                                   #
 # Date       : 11/04/2023                                                                                                             #
 # Version    : 12/04/2023                                                                                                             #
-# Langue     : French, All                                                                                                               #
+# Langue     : French, All                                                                                                            #
 # Script     : Il récupère le contenu d'un flux RSS (titre, description et lien), traduit le titre et la description des entrées      #
 #              dans n'importe quelle langue, supprime la dernière phrase de la description si elle est identique au titre, affiche    #
 #              les résultats et lit à voix haute le titre et la description.                                                          #
@@ -98,7 +98,7 @@ for entry in feed.entries:
         player.play()
         pygame.time.wait(int(player.get_length() * 1000))
 
-        # Suppression du fichier audio
+        # Suppression des fichiers audio
         os.remove("title.mp3")
         os.remove("description.mp3")
     else:
