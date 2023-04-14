@@ -19,7 +19,7 @@ Le script utilise également l'API OpenAI pour répondre à des requêtes de typ
 
 # Installation
 
-$ pip install <Requirements>
+$ pip install "Requirements"
 
 # Utilisation
 
