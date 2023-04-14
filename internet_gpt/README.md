@@ -17,6 +17,8 @@ Le script utilise également l'API OpenAI pour répondre à des requêtes de typ
 - openai
 - colorama
 
+Grâce à la commande : `pip install requests beautifulsoup4 webbrowser datetime time os gtts pygame openai colorama`
+
 # Installation
 
 $ pip install "Requirements"
