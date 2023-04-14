@@ -23,7 +23,7 @@ $ pip install "Requirements"
 
 # Utilisation
 
-Exécutez le script en exécutant la commande `python internet_advanced_gpt-search.py`.
+Exécutez le script en exécutant la commande `python.exe internet_advanced_gpt-search.py`.
 
 Le script vous demandera de saisir votre requête. Il recherchera ensuite le premier résultat de recherche en lien avec votre requête et l'affichera. Si le résultat est un texte, le script le lira à voix haute. Si le résultat est un article, le script affichera un lien vers l'article.
 
