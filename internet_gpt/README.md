@@ -19,9 +19,7 @@ Le script utilise également l'API OpenAI pour répondre à des requêtes de typ
 
 # Installation
 
-$ git clone https://github.com/Haxill/scripts.git
-$ cd Haxill/scripts/
-$ pip install -r requirements.txt
+$ pip install <Requirements>
 
 # Utilisation
 
