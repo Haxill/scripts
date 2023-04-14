@@ -21,6 +21,7 @@ Le script utilise également l'API OpenAI pour répondre à des requêtes de typ
 
 Sur le store windows, installer le python 3.9 (cela devrait fonctionner avec python 3.6 ou supérieur).
 
+Puis :
 `$ pip install requests beautifulsoup4 datetime gtts pygame openai colorama`
 
 # Utilisation
