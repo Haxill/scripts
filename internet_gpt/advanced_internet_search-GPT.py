@@ -22,7 +22,7 @@ import os
 import openai
 
 # Remplacez par votre clé d'API OpenAI
-openai.api_key = "<VOTRE_API_KEY_OPENAI>"
+openai.api_key = "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"
 
 # Modele de chatGPT utilisé
 model_engine = "gpt-3.5-turbo"
@@ -113,7 +113,7 @@ while True:
             n=1,
             temperature=0.8,
             messages=[
-                {"role": "system", "content": "Tu reponds en tant que mon assistant personnel qui connais tout sur tout. Nous sommes actuellement en " +str(year)+ "." },
+                {"role": "system", "content": "Tu reponds en tant que mon assistant personnel qui connais tout sur tout et tu sais que nous sommes actuellement en " +str(year)+ "." },
                 {"role": "user", "content": query }
             ])
             # Affiche la réponse de ChatGPT 3.5 Turbo
@@ -147,7 +147,11 @@ while True:
                 if openweb == "o":
                     webbrowser.open(result_url)
     else:
-        print(f"{Fore.RED}Pas de résultat trouvé pour {query}{Style.RESET_ALL}")
+        if not repurl and not reptext:
+            result_title = ""
+            print(f"\n{Fore.RED}    - Veuillez spécifier une recherche -{Style.RESET_ALL}")
+        else:
+            print(f"\n{Fore.RED}    - Pas de résultat trouvé pour {query} -{Style.RESET_ALL}")
     
     # Extraction des informations de la page Wikipedia si elle existe
     if not repgpt :
@@ -164,32 +168,39 @@ while True:
         response = requests.get(wikipedia_api_url, params=wikipedia_params)
         response_json = response.json()
 
-        if "-1" not in response_json["query"]["pages"]:
-            # Récupère l'extrait de la page Wikipedia
-            page_id = next(iter(response_json["query"]["pages"]))
-            page_extract = response_json["query"]["pages"][page_id]["extract"]
-            
-            # Affiche les informations de la page Wikipedia
-            print("\n *Précisions : {}".format(page_extract))
-            tts = gTTS("{}".format(page_extract), lang='fr')
-            tts.save("page_extract.mp3")
-            
-            # Lecture du fichier audio
-            player = pygame.mixer.Sound("page_extract.mp3")
-            player.play()
-            pygame.time.wait(int(player.get_length() * 1000))
-            
-            # Suppression du fichier audio
-            os.remove("page_extract.mp3")
+        if not reptext and not repgpt:
+            pass
+        else:
+            if "-1" not in response_json["query"]["pages"]:
+                # Récupère l'extrait de la page Wikipedia
+                page_id = next(iter(response_json["query"]["pages"]))
+                page_extract = response_json["query"]["pages"][page_id]["extract"]
+                
+                # Affiche les informations de la page Wikipedia
+                print("\n *Précisions : {}".format(page_extract))
+                tts = gTTS("{}".format(page_extract), lang='fr')
+                tts.save("page_extract.mp3")
+                
+                # Lecture du fichier audio
+                player = pygame.mixer.Sound("page_extract.mp3")
+                player.play()
+                pygame.time.wait(int(player.get_length() * 1000))
+                
+                # Suppression du fichier audio
+                os.remove("page_extract.mp3")
 
         # Ouvre l'URL dans un navigateur
-        if "-1" in response_json["query"]["pages"]:
-            if repurl:
-                pass
-            else:
-                openweb = input(f"\nOuvrir le lien dans le navigateur (o/N) ? ")
-                if openweb == "o":
-                    webbrowser.open(result_url)
+        if not reptext and not repgpt:
+            result_url = "https://perdu.com/"
+            openweb = input(f"\nBesoin d'inspiration (o/N) ? ")
+            if openweb == "o":
+                webbrowser.open(result_url)
+        else:
+            if "-1" in response_json["query"]["pages"]:
+                if repurl:
+                    openweb = input(f"\nOuvrir le lien dans le navigateur (o/N) ? ")
+                    if openweb == "o":
+                        webbrowser.open(result_url)
 
     # L'utilisateur quitte le script
     if query == "au revoir" or query == "aurevoir":
