@@ -22,11 +22,14 @@ Le script utilise également l'API OpenAI pour répondre à des requêtes de typ
 Sur le store windows, installer le python 3.9 (cela devrait fonctionner avec python 3.6 ou supérieur).
 
 Puis :
+
+`$ python -m pip install --upgrade pip`
+
 `$ pip install requests beautifulsoup4 datetime gtts pygame openai colorama`
 
 # Utilisation
 
-Exécutez le script en exécutant la commande `python.exe internet_advanced_gpt-search.py`.
+Exécutez le script en exécutant la commande `python /Path/To/internet_advanced_gpt-search.py`.
 
 Le script vous demandera de saisir votre requête. Il recherchera ensuite le premier résultat de recherche en lien avec votre requête et l'affichera. Si le résultat est un texte, le script le lira à voix haute. Si le résultat est un article, le script affichera un lien vers l'article.
 
