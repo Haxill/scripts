@@ -13,7 +13,7 @@ Le script utilise également l'API OpenAI pour répondre à des requêtes de typ
 - OS: Windows
 - Language: French
 
-## Future Improvements
+## Future Improvements (en)
 - Add support for other languages besides French.
 - Add an automatic translation module for input in any language.
 - Improve error handling.
