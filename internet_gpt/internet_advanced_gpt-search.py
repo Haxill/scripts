@@ -51,19 +51,20 @@ temperature=0.8,
 messages=[
     {"role": "system", "content": "Tu dis bonjour en tant que IA qui connais tout sur tout et qui a accès à internet !" },
 ])
-# Affiche la réponse de ChatGPT 3.5 Turbo
 hello = response['choices'][0]['message']['content']
 
-# Transformation du texte en fichier vocal
-tts = gTTS(hello, lang='fr')
-tts.save("hello.mp3")
+# Fonction pour lire un texte avec la synthèse vocale
+def parler(texte):
+    tts = gTTS(text=texte, lang='fr')
+    tts.save('texte.mp3')
+    # Lecture du fichier audio
+    player = pygame.mixer.Sound("texte.mp3")
+    player.play()
+    if texte is not hello:
+        pygame.time.wait(int(player.get_length() * 1000))
+    os.remove('texte.mp3')
 
-# Lecture du fichier audio
-player = pygame.mixer.Sound("hello.mp3")
-player.play()
-
-# Suppression du fichier audio
-os.remove("hello.mp3")
+parler(hello)
 
 while True:
     # (Ré)initialisation des booléens
@@ -113,16 +114,8 @@ while True:
             
             # Transformation du texte en fichier vocal
             if result_text != '':
-                tts = gTTS(result_text, lang='fr')
-                tts.save("result_text.mp3")
-                
-                # Lecture du fichier audio
-                player = pygame.mixer.Sound("result_text.mp3")
-                player.play()
-                pygame.time.wait(int(player.get_length() * 1000))
-                
-                # Suppression du fichier audio
-                os.remove("result_text.mp3")
+                # Transformation et lecture du fichier audio
+                parler(result_text)
                 
             # Affiche le lien vers l'article
             if "search" in result_url:
@@ -153,17 +146,8 @@ while True:
             else:
                 print("\n", output_text, "\n")
 
-            # Transformation du texte en fichier vocal
-            tts = gTTS(output_text, lang='fr')
-            tts.save("output_text.mp3")
-            
-            # Lecture du fichier audio
-            player = pygame.mixer.Sound("output_text.mp3")
-            player.play()
-            pygame.time.wait(int(player.get_length() * 1000))
-            
-            # Suppression du fichier audio
-            os.remove("output_text.mp3")
+            # Transformation et lecture du fichier audio
+            parler(output_text)
             
             # Affiche le lien vers l'article
             if "search" in result_url:
@@ -183,40 +167,6 @@ while True:
     
     # Extraction des informations de la page Wikipedia si elle existe
     if not repgpt :
-        wikipedia_api_url = "https://fr.wikipedia.org/w/api.php"
-        wikipedia_params = {
-            "action": "query",
-            "format": "json",
-            "prop": "extracts",
-            "titles": result_title,
-            "exintro": 1,
-            "explaintext": 1,
-            "redirects": 1
-        }
-        response = requests.get(wikipedia_api_url, params=wikipedia_params)
-        response_json = response.json()
-
-        if not reptext and not repgpt:
-            pass
-        else:
-            if "-1" not in response_json["query"]["pages"]:
-                # Récupère l'extrait de la page Wikipedia
-                page_id = next(iter(response_json["query"]["pages"]))
-                page_extract = response_json["query"]["pages"][page_id]["extract"]
-                
-                # Affiche les informations de la page Wikipedia
-                print("\n *Précisions : {}".format(page_extract))
-                tts = gTTS("{}".format(page_extract), lang='fr')
-                tts.save("page_extract.mp3")
-                
-                # Lecture du fichier audio
-                player = pygame.mixer.Sound("page_extract.mp3")
-                player.play()
-                pygame.time.wait(int(player.get_length() * 1000))
-                
-                # Suppression du fichier audio
-                os.remove("page_extract.mp3")
-
         # Ouvre l'URL dans un navigateur
         if not reptext and not repgpt:
             result_url = "https://perdu.com/"
@@ -224,11 +174,9 @@ while True:
             if openweb == "o":
                 webbrowser.open(result_url)
         else:
-            if "-1" in response_json["query"]["pages"]:
-                #if repurl:
-                openweb = input(f"\nOuvrir le lien dans le navigateur (o/N) ? ")
-                if openweb == "o":
-                    webbrowser.open(result_url)
+            openweb = input(f"\nOuvrir le lien dans le navigateur (o/N) ? ")
+            if openweb == "o":
+                webbrowser.open(result_url)
 
     # L'utilisateur quitte le script
     if query == "au revoir" or query == "aurevoir":
