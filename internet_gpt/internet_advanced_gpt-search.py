@@ -38,6 +38,33 @@ year = now.year
 # Configuration de pygame pour la lecture audio
 pygame.init()
 
+# Initialisation du programme
+os.system("cls")
+print("\n\nInitialisation de l'IA en cours...")
+    
+# L'IA dit bonjour
+response = openai.ChatCompletion.create(
+model=model_engine,
+max_tokens=1024,
+n=1,
+temperature=0.8,
+messages=[
+    {"role": "system", "content": "Tu dis bonjour en tant que IA qui connais tout sur tout et qui a accès à internet !" },
+])
+# Affiche la réponse de ChatGPT 3.5 Turbo
+hello = response['choices'][0]['message']['content']
+
+# Transformation du texte en fichier vocal
+tts = gTTS(hello, lang='fr')
+tts.save("hello.mp3")
+
+# Lecture du fichier audio
+player = pygame.mixer.Sound("hello.mp3")
+player.play()
+
+# Suppression du fichier audio
+os.remove("hello.mp3")
+
 while True:
     # (Ré)initialisation des booléens
     repgpt = False
@@ -45,6 +72,7 @@ while True:
     repurl = False
     
     os.system("cls")
+    
     # Requête HTTP pour récupérer la page de résultats de recherche Google
     query = input("\n      -> Vous : ")
     url = f"https://www.google.com/search?q={query}"
@@ -113,7 +141,7 @@ while True:
             n=1,
             temperature=0.8,
             messages=[
-                {"role": "system", "content": "Tu reponds en tant que mon assistant personnel qui connais tout sur tout et tu sais que nous sommes actuellement en " +str(year)+ "." },
+                {"role": "system", "content": "Tu reponds en tant que IA qui connais tout sur tout, tu sais que nous sommes actuellement en " +str(year)+ "." },
                 {"role": "user", "content": query }
             ])
             # Affiche la réponse de ChatGPT 3.5 Turbo
