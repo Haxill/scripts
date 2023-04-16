@@ -30,6 +30,10 @@ model_engine = "gpt-3.5-turbo"
 # Initialisation de Colorama
 init()
 
+# Initialisation de variables GTP
+tokens = 1024
+temp = 0.8
+
 # Obtention de la date actuelle
 now = datetime.datetime.now()
 # Extraction de l'année pour que chatGPT sache quelle est l'année en cours
@@ -38,33 +42,54 @@ year = now.year
 # Configuration de pygame pour la lecture audio
 pygame.init()
 
-# Initialisation du programme
+# Vérification de la connexion internet
 os.system("cls")
-print("\n\nInitialisation de l'IA en cours...")
-    
-# L'IA dit bonjour
-response = openai.ChatCompletion.create(
-model=model_engine,
-max_tokens=1024,
-n=1,
-temperature=0.8,
-messages=[
-    {"role": "system", "content": "Tu dis bonjour en tant que IA qui connais tout sur tout et qui a accès à internet !" },
-])
-hello = response['choices'][0]['message']['content']
+print("\nVérification de la connection internet...")
 
-# Fonction pour lire un texte avec la synthèse vocale
-def parler(texte):
-    tts = gTTS(text=texte, lang='fr')
-    tts.save('texte.mp3')
-    # Lecture du fichier audio
-    player = pygame.mixer.Sound("texte.mp3")
-    player.play()
-    if texte is not hello:
-        pygame.time.wait(int(player.get_length() * 1000))
-    os.remove('texte.mp3')
+# Booléen pour connexion internet
+def test_connexion():
+    try:
+        requests.get("http://www.google.com", timeout=3)
+        return True
+    except requests.ConnectionError:
+        return False
 
-parler(hello)
+if test_connexion():
+    os.system("cls")
+    print("\nVérification de la connection internet...OK")
+    # Initialisation du programme
+    print("Initialisation de l'IA en cours...")
+
+    # Configuration de la requête à l'API pour dire bonjour
+    response = openai.ChatCompletion.create(
+    model=model_engine,
+    max_tokens=tokens,
+    n=1,
+    temperature=temp,
+    messages=[
+        {"role": "system", "content": "Tu dis bonjour en tant que IA qui connais tout sur tout et qui a accès à internet !" },
+    ])
+    hello = response['choices'][0]['message']['content']
+
+    ''
+    # Fonction pour lire un texte avec la synthèse vocale
+    def parler(texte):
+        tts = gTTS(text=texte, lang='fr')
+        tts.save('texte.mp3')
+        # Lecture du fichier audio
+        player = pygame.mixer.Sound("texte.mp3")
+        player.play()
+        if texte is not hello:
+            pygame.time.wait(int(player.get_length() * 1000))
+        os.remove('texte.mp3')
+    ''
+    # L'IA dit bonjour
+    parler(hello)
+else:
+    os.system("cls")
+    # Fin du script
+    print(f"\n\n{Fore.RED}Veuillez vérifier votre connexion internet puis relancer le script.{Style.RESET_ALL}\n\n")
+    quit()
 
 while True:
     # (Ré)initialisation des booléens
@@ -130,9 +155,9 @@ while True:
             # Envoie la requête à l'API ChatGPT 3.5 Turbo et récupère la réponse
             response = openai.ChatCompletion.create(
             model=model_engine,
-            max_tokens=1024,
+            max_tokens=tokens,
             n=1,
-            temperature=0.8,
+            temperature=temp,
             messages=[
                 {"role": "system", "content": "Tu reponds en tant que IA qui connais tout sur tout, tu sais que nous sommes actuellement en " +str(year)+ "." },
                 {"role": "user", "content": query }
