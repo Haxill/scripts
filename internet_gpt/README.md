@@ -19,6 +19,7 @@ Le script utilise également l'API OpenAI pour répondre à des requêtes de typ
 - Improve error handling.
 
 ## Requirements
+- Python 3.9
 - requests
 - beautifulsoup4
 - webbrowser
