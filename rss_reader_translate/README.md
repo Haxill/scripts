@@ -21,7 +21,7 @@ You can install them by running:
 
 2 - Open a terminal and navigate to the directory containing the script.
 
-3 - Run the script by typing `python rss_feed_translator.py`.
+3 - Run the script by typing `python rss_translate.py`.
 
 4 - Enter the language in which you want to read the results (e.g., "fr", "en", "es", "it", "de", "ja", "uk", etc.).
 
