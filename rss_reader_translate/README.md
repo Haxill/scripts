@@ -14,6 +14,8 @@ Before running the script, make sure you have the following Python packages inst
 
 You can install them by running:
 
+`pip install --upgrade pip`
+
 `pip install feedparser beautifulsoup4 colorama gtts pygame langdetect mtranslate`
 
 # Usage
