@@ -41,6 +41,8 @@ Puis :
 `pip install requests beautifulsoup4 datetime gtts pygame openai colorama`
 
 ## Utilisation
+Ouvrez un CMD: Touche Windows, puis tapez `cmd` et touche Entrée.
+
 Exécutez le script en exécutant la commande `python /Path/To/internet_advanced_gpt-search.py`.
 
 Vérification automatique de la connexion internet avant de lancer le script.
