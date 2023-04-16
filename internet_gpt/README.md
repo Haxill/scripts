@@ -42,8 +42,8 @@ Puis :
 
 ## Utilisation
 Ouvrez une invite de commande :
-- Touche Windows
-- Tapez `cmd`
+- Touche Windows.
+- Tapez `cmd`.
 - Touche Entrée.
 
 Exécutez le script en exécutant la commande `python /Path/To/internet_advanced_gpt-search.py`.
