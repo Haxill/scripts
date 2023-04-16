@@ -4,6 +4,7 @@
 # Engine     : gTTS, gpt-3.5-turbo                                                                                                     #
 # Date       : 12/04/2023                                                                                                              #
 # Version    : 16/04/2023                                                                                                              #
+# OS         : Windows                                                                                                                 #
 # Langue     : French                                                                                                                  #
 # Script     : Ce script permet de communiquer avec l'API de 'chatGPT 3.5 Turbo' pour répondre à des questions et afficher le résultat #
 #              de recherche Google correspondant, tout en lisant la réponse à haute voix.                                              #
