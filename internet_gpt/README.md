@@ -23,9 +23,9 @@ Sur le store windows, installer le python 3.9 (cela devrait fonctionner avec pyt
 
 Puis :
 
-`$ python -m pip install --upgrade pip`
+`python -m pip install --upgrade pip`
 
-`$ pip install requests beautifulsoup4 datetime gtts pygame openai colorama`
+`pip install requests beautifulsoup4 datetime gtts pygame openai colorama`
 
 # Utilisation
 
