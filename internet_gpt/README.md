@@ -31,6 +31,8 @@ Puis :
 
 Exécutez le script en exécutant la commande `python /Path/To/internet_advanced_gpt-search.py`.
 
+Vérification automatique de la connexion internet avant de lancer le script.
+
 Le script vous demandera de saisir votre requête. Il recherchera ensuite le premier résultat de recherche en lien avec votre requête et l'affichera. Si le résultat est un texte, le script le lira à voix haute. Si le résultat est un article, le script affichera un lien vers l'article.
 
 Si la requête est de type chatbot, le script utilisera l'API OpenAI pour générer une réponse. Si le modèle de langage ne peut pas répondre à la requête, le script renverra un lien vers un résultat de recherche.
