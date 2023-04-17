@@ -38,6 +38,7 @@ pygame.init()
 url = "https://www.lemondeinformatique.fr/flux-rss/thematique/securite/rss.xml"
 #url = "https://www.journaldugeek.com/feed/"
 #url = "https://www.generation-nt.com/export/rss_techno.xml"
+#url = "https://lejournal.cnrs.fr/rss/2815"
 
 # Demande de la langue dans laquelle on veut lire les résultats
 print(f"\n                              -- HAXILL RSS FEED TRANSLATOR --\n")
