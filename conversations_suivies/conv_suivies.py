@@ -191,5 +191,5 @@ while True:
     ajouter_message(texte, chatgpt_reponse)
 
     # Affichage de la réponse de chatgpt
-    print("\nIris: " + chatgpt_reponse)
+    print(f"\n{iaName}: " + chatgpt_reponse)
     parler(chatgpt_reponse)
